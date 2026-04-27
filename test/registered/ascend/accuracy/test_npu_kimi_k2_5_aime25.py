@@ -100,7 +100,8 @@ class TestNPUKimiK2_5AIME25(TestAscendAccuracyTestCaseBase):
     other_args = KIMI_K2_5_OTHER_ARGS
     envs = KIMI_K2_5_ENVS
     accuracy = 0.3
-    dataset_type = "aime25"
+    dataset_type = "aime2025"
+    dataset_name = "aime2025_gen"
     batch_size = 64
     max_out_len = 8192
 
