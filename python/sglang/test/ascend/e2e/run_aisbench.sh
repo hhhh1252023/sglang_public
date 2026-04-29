@@ -208,9 +208,6 @@ mkdir -p ${MODEL_CONFIG_PATH}
 TMP_CFG=vllm_api_${MODEL}
 DATASETS_CONFIG_PATH=${AISBENCH_CUSTOM_CONFIG_PATH}/datasets
 mkdir -p ${DATASETS_CONFIG_PATH}
-DEST_COPY_DIR="/tmp/copy_$(date +%Y%m%d_%H%M%S)"
-cp -rf "${INTERNAL_TEMPLATE_DIR}" "${DEST_COPY_DIR}"
-INTERNAL_TEMPLATE_CONFIG_PATH="${DEST_COPY_DIR}"
 
 GSM8K_TRAIN_FILE="/root/.cache/modelscope/hub/datasets/grade_school_math/train.jsonl"
 if [ ! -f "${GSM8K_TRAIN_FILE}" ];then
@@ -476,6 +473,20 @@ if [ "$MODE" == "perf" ];then
         gen_model_config_file_vllm_api_stream_chat
         CMD="${CMD} --config-dir ${AISBENCH_CUSTOM_CONFIG_PATH} --models $TMP_CFG --datasets ${DATASET_NAME} --summarizer default_perf --mode perf --num-prompts $NUM_PROMPTS --work-dir $OUTPUT_PATH "
     elif [ "$DATASET_TYPE" == "gsm8k" ]; then
+        SOURCE_AUTO_TOOLS_DIR="/root/.cache/.cache/aisbench_auto_tools_prefix-master"
+        DEST_COPY_DIR="/tmp/copy_aisbench_$(date +%Y%m%d_%H%M%S)"
+
+        echo "===== [Step 1/4] Copying entire toolkit directory ====="
+        if [ ! -d "${SOURCE_AUTO_TOOLS_DIR}" ]; then
+            echo "Error: Source directory not found: ${SOURCE_AUTO_TOOLS_DIR}"
+            exit 1
+        fi
+        cp -rf "${SOURCE_AUTO_TOOLS_DIR}" "${DEST_COPY_DIR}"
+        echo "Successfully copied to: ${DEST_COPY_DIR}"
+
+        INTERNAL_TEMPLATE_DIR="${DEST_COPY_DIR}"
+        INTERNAL_TEMPLATE_CONFIG_PATH="${DEST_COPY_DIR}"
+
         dataset_file=$DATASET_PATH
         if [ ! -f "${dataset_file}" ]; then
             echo "The gsm8k dataset file does not exist: ${DATASET_PATH}."
@@ -487,14 +498,31 @@ if [ "$MODE" == "perf" ];then
         else
             echo "Warning: GSM8K train file not found at ${GSM8K_TRAIN_FILE}"
         fi
+        
         DATASET_NAME=gsm8k_custom_${MODEL}
         gen_dataset_gsm8k_config_file "${dataset_dir}"
         gen_model_config_file_vllm_api_stream_chat
 
         if (( $(echo "$PREFIX_HIT_RATE > 0" | bc -l) )); then
+            TARGET_CONFIG_FILE="${DEST_COPY_DIR}/config"
+            
+            echo "===== [Step 2/4] Prefix Mode Detected: Updating temporary config file ====="
+            if [ -f "$TARGET_CONFIG_FILE" ]; then
+                [ -n "$MODEL" ] && sed -i "s/^[[:space:]]*MODEL_NAME[[:space:]]*=.*/MODEL_NAME=\"$MODEL\"/" "$TARGET_CONFIG_FILE"
+                [ -n "$MODEL_PATH" ] && sed -i "s|^[[:space:]]*MODEL_PATH[[:space:]]*=.*|MODEL_PATH=\"$MODEL_PATH\"|" "$TARGET_CONFIG_FILE"
+                [ -n "$IP" ] && sed -i "s/^[[:space:]]*HOST_IP[[:space:]]*=.*/HOST_IP=\"$IP\"/" "$TARGET_CONFIG_FILE"
+                [ -n "$PORT" ] && sed -i "s/^[[:space:]]*HOST_PORT[[:space:]]*=.*/HOST_PORT=\"$PORT\"/" "$TARGET_CONFIG_FILE"
+                
+                echo "Config updated successfully in: $TARGET_CONFIG_FILE"
+            else
+                echo "Error: Config file not found in temp dir: $TARGET_CONFIG_FILE"
+                exit 1
+            fi
+
             echo "===== [Mode] Prefix Cache Test (Hit Rate: $PREFIX_HIT_RATE) ====="
             echo "Use dataset: ${DATASET_NAME}, dataset_file: ${dataset_file}"
             echo "Input tokens: ${INPUT_LEN} | Output tokens: ${OUTPUT_LEN} | Batch size: ${BATCH_SIZE} | Prompts num: ${NUM_PROMPTS}"
+            echo "Executing from temp dir: ${INTERNAL_TEMPLATE_DIR}"
             
             PREFIX_TEST_CMD="python3 ${INTERNAL_TEMPLATE_DIR}/aisbench_test.py --input_len ${INPUT_LEN} --output_len ${OUTPUT_LEN} --data_num ${NUM_PROMPTS} --concurrency ${BATCH_SIZE} --request_rate ${REQUEST_RATE} --dataset_type prefix_cache --repeat_rate ${REPEAT_RATE} --prefix_test --dp ${DP}"
             echo "Executing: ${PREFIX_TEST_CMD}"
