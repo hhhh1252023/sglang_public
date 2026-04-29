@@ -66,6 +66,7 @@ def run_aisbench(
     output_len,
     max_concurrency,
     num_prompts,
+    request_rate,
     generation_kwargs=None,
 ):
 
@@ -88,6 +89,8 @@ def run_aisbench(
 
     if generation_kwargs:
         cmd += f" --generation-kwargs '{generation_kwargs}'"
+    if request_rate:
+        cmd += f" --request_rate '{request_rate}'"
 
     logger.info(f"Command: {cmd}")
 
@@ -179,6 +182,7 @@ class TestAscendAccuracyTestCaseBase(CustomTestCase):
     max_concurrency = 1
     num_prompts = 100000
     generation_kwargs = None
+    request_rate = None
 
     @classmethod
     def setUpClass(cls):
@@ -223,6 +227,7 @@ class TestAscendAccuracyTestCaseBase(CustomTestCase):
                 output_len=self.output_len,
                 max_concurrency=self.max_concurrency,
                 num_prompts=self.num_prompts,
+                request_rate=self.request_rate,
                 generation_kwargs=self.generation_kwargs,
             )
             assert_metrics(self, metrics)
@@ -243,6 +248,7 @@ class TestAscendAccuracyMultiNodePdMixTestCaseBase(CustomTestCase):
     max_concurrency = 1
     num_prompts = 100000
     generation_kwargs = None
+    request_rate = None
 
     @classmethod
     def setUpClass(cls):
@@ -304,6 +310,7 @@ class TestAscendAccuracyMultiNodePdMixTestCaseBase(CustomTestCase):
                 output_len=self.output_len,
                 max_concurrency=self.max_concurrency,
                 num_prompts=self.num_prompts,
+                request_rate=self.request_rate,
                 generation_kwargs=self.generation_kwargs,
             )
             assert_metrics(self, metrics)
@@ -323,6 +330,7 @@ class TestAscendAccuracyMultiNodePdSepTestCaseBase(CustomTestCase):
     max_concurrency = 1
     num_prompts = 100000
     generation_kwargs = None
+    request_rate = None
 
     @classmethod
     def setUpClass(cls):
@@ -400,7 +408,8 @@ class TestAscendAccuracyMultiNodePdSepTestCaseBase(CustomTestCase):
                 dataset_type=self.dataset_type,
                 output_len=self.output_len,
                 max_concurrency=self.max_concurrency,
-                num_prompts=self.num_prompts, 
+                num_prompts=self.num_prompts,
+                request_rate=self.request_rate,
                 generation_kwargs=self.generation_kwargs,
             )
             assert_metrics(self, metrics)
