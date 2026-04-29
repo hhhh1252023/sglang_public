@@ -422,6 +422,7 @@ def run_aisbench(
     aisbench_request_rate=None,
     aisbench_concurrency=None,
     aisbench_repeat_rate=None,
+    dp=None,
     generation_kwargs=None,
 ):
 
@@ -508,6 +509,8 @@ def run_aisbench(
         cmd += f" --concurrency {aisbench_concurrency}"
     if aisbench_repeat_rate is not None:
         cmd += f" --repeat_rate {aisbench_repeat_rate}"
+    if dp is not None:
+        cmd += f" --dp {dp}"
     if generation_kwargs:
         cmd += f" --generation-kwargs '{generation_kwargs}'"
 
@@ -755,6 +758,7 @@ class TestAscendPerformanceTestCaseBase(CustomTestCase):
     aisbench_request_rate = None
     aisbench_concurrency = None
     aisbench_repeat_rate = None
+    dp = None
     generation_kwargs = None
 
     @classmethod
@@ -809,6 +813,7 @@ class TestAscendPerformanceTestCaseBase(CustomTestCase):
                 aisbench_request_rate=self.aisbench_request_rate,
                 aisbench_concurrency=self.aisbench_concurrency,
                 aisbench_repeat_rate=self.aisbench_repeat_rate,
+                dp=self.dp,
                 generation_kwargs=self.generation_kwargs,
             )
             assert_metrics(self, metrics)
@@ -865,6 +870,7 @@ class TestAscendPerfMultiNodePdMixTestCaseBase(CustomTestCase):
     aisbench_request_rate = None
     aisbench_concurrency = None
     aisbench_repeat_rate = None
+    dp = None
     generation_kwargs = None
 
     @classmethod
@@ -933,6 +939,7 @@ class TestAscendPerfMultiNodePdMixTestCaseBase(CustomTestCase):
                 aisbench_request_rate=self.aisbench_request_rate,
                 aisbench_concurrency=self.aisbench_concurrency,
                 aisbench_repeat_rate=self.aisbench_repeat_rate,
+                dp=self.dp,
                 generation_kwargs=self.generation_kwargs,
             )
             assert_metrics(self, metrics)
@@ -989,6 +996,7 @@ class TestAscendPerfMultiNodePdSepTestCaseBase(CustomTestCase):
     aisbench_request_rate = None
     aisbench_concurrency = None
     aisbench_repeat_rate = None
+    dp = None
     generation_kwargs = None
 
     @classmethod
@@ -1073,6 +1081,7 @@ class TestAscendPerfMultiNodePdSepTestCaseBase(CustomTestCase):
                 aisbench_request_rate=self.aisbench_request_rate,
                 aisbench_concurrency=self.aisbench_concurrency,
                 aisbench_repeat_rate=self.aisbench_repeat_rate,
+                dp=self.dp
                 generation_kwargs=self.generation_kwargs,
             )
             assert_metrics(self, metrics)
