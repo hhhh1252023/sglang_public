@@ -24,6 +24,7 @@ show_usage() {
     echo "  --request_rate      Request rate for prefix cache test (default: 0)"
     echo "  --concurrency       Concurrency for prefix cache test (default: 1)"
     echo "  --repeat_rate       Repeat rate for prefix cache test (default: 0)"
+    echo "  --dp                Data parallelism for prefix cache test (default: 2)"
     echo "  --generation-kwargs Custom generation kwargs dict string (overrides defaults based on mode)"
     echo "                      Example: 'dict(temperature=0.5, top_k=10, top_p=0.95, seed=None, repetition_penalty=1.03)'"
     echo ""
@@ -52,7 +53,7 @@ PREFIX_HIT_RATE="0"
 REQUEST_RATE="0"
 CONCURRENCY="1"
 REPEAT_RATE="0"
-DP="0"
+DP="2"
 
 GENERATION_KWARGS=""
 
