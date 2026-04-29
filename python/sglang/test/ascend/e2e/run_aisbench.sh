@@ -22,7 +22,6 @@ show_usage() {
     echo "  --output-path       Output path (default: ./result)"
     echo "  --prefix-hit-rate   Prefix cache hit rate (if >0, run prefix cache test; default: 0)"
     echo "  --request_rate      Request rate for prefix cache test (default: 0)"
-    echo "  --concurrency       Concurrency for prefix cache test (default: 1)"
     echo "  --repeat_rate       Repeat rate for prefix cache test (default: 0)"
     echo "  --dp                Data parallelism for prefix cache test (default: 2)"
     echo "  --generation-kwargs Custom generation kwargs dict string (overrides defaults based on mode)"
@@ -51,7 +50,6 @@ INTERNAL_TEMPLATE_DIR="/root/.cache/.cache/aisbench_auto_tools_prefix-master"
 
 PREFIX_HIT_RATE="0"
 REQUEST_RATE="0"
-CONCURRENCY="1"
 REPEAT_RATE="0"
 DP="2"
 
@@ -113,10 +111,6 @@ while [[ $# -gt 0 ]]; do
             ;;
         --request_rate)
             REQUEST_RATE="$2"
-            shift 2
-            ;;
-        --concurrency)
-            CONCURRENCY="$2"
             shift 2
             ;;
         --repeat_rate)
@@ -502,7 +496,7 @@ if [ "$MODE" == "perf" ];then
             echo "Use dataset: ${DATASET_NAME}, dataset_file: ${dataset_file}"
             echo "Input tokens: ${INPUT_LEN} | Output tokens: ${OUTPUT_LEN} | Batch size: ${BATCH_SIZE} | Prompts num: ${NUM_PROMPTS}"
             
-            PREFIX_TEST_CMD="python3 ${INTERNAL_TEMPLATE_DIR}/aisbench_test.py --input_len ${INPUT_LEN} --output_len ${OUTPUT_LEN} --data_num ${NUM_PROMPTS} --concurrency ${CONCURRENCY} --request_rate ${REQUEST_RATE} --dataset_type prefix_cache --repeat_rate ${REPEAT_RATE} --prefix_test --dp ${DP}"
+            PREFIX_TEST_CMD="python3 ${INTERNAL_TEMPLATE_DIR}/aisbench_test.py --input_len ${INPUT_LEN} --output_len ${OUTPUT_LEN} --data_num ${NUM_PROMPTS} --concurrency ${BATCH_SIZE} --request_rate ${REQUEST_RATE} --dataset_type prefix_cache --repeat_rate ${REPEAT_RATE} --prefix_test --dp ${DP}"
             echo "Executing: ${PREFIX_TEST_CMD}"
     
             source ${PYTHON_ENV_FOR_AISBENCH}/bin/activate
