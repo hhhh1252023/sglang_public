@@ -420,7 +420,6 @@ def run_aisbench(
 
     prefix_hit_rate=None,
     aisbench_request_rate=None,
-    aisbench_concurrency=None,
     aisbench_repeat_rate=None,
     dp=None,
     generation_kwargs=None,
@@ -505,8 +504,6 @@ def run_aisbench(
         cmd += f" --prefix-hit-rate {prefix_hit_rate}"
     if aisbench_request_rate is not None:
         cmd += f" --request_rate {aisbench_request_rate}"
-    if aisbench_concurrency is not None:
-        cmd += f" --concurrency {aisbench_concurrency}"
     if aisbench_repeat_rate is not None:
         cmd += f" --repeat_rate {aisbench_repeat_rate}"
     if dp is not None:
@@ -756,7 +753,6 @@ class TestAscendPerformanceTestCaseBase(CustomTestCase):
 
     prefix_hit_rate = None
     aisbench_request_rate = None
-    aisbench_concurrency = None
     aisbench_repeat_rate = None
     dp = None
     generation_kwargs = None
@@ -811,7 +807,6 @@ class TestAscendPerformanceTestCaseBase(CustomTestCase):
 
                 prefix_hit_rate=self.prefix_hit_rate,
                 aisbench_request_rate=self.aisbench_request_rate,
-                aisbench_concurrency=self.aisbench_concurrency,
                 aisbench_repeat_rate=self.aisbench_repeat_rate,
                 dp=self.dp,
                 generation_kwargs=self.generation_kwargs,
@@ -868,7 +863,6 @@ class TestAscendPerfMultiNodePdMixTestCaseBase(CustomTestCase):
 
     prefix_hit_rate = None
     aisbench_request_rate = None
-    aisbench_concurrency = None
     aisbench_repeat_rate = None
     dp = None
     generation_kwargs = None
@@ -934,10 +928,8 @@ class TestAscendPerfMultiNodePdMixTestCaseBase(CustomTestCase):
                 num_prompts=self.num_prompts,
                 image_resolution=self.image_resolution,
                 random_range_ratio=self.random_range_ratio,
-                # 新增传参
                 prefix_hit_rate=self.prefix_hit_rate,
                 aisbench_request_rate=self.aisbench_request_rate,
-                aisbench_concurrency=self.aisbench_concurrency,
                 aisbench_repeat_rate=self.aisbench_repeat_rate,
                 dp=self.dp,
                 generation_kwargs=self.generation_kwargs,
@@ -994,7 +986,6 @@ class TestAscendPerfMultiNodePdSepTestCaseBase(CustomTestCase):
 
     prefix_hit_rate = None
     aisbench_request_rate = None
-    aisbench_concurrency = None
     aisbench_repeat_rate = None
     dp = None
     generation_kwargs = None
@@ -1079,7 +1070,6 @@ class TestAscendPerfMultiNodePdSepTestCaseBase(CustomTestCase):
                 random_range_ratio=self.random_range_ratio,
                 prefix_hit_rate=self.prefix_hit_rate,
                 aisbench_request_rate=self.aisbench_request_rate,
-                aisbench_concurrency=self.aisbench_concurrency,
                 aisbench_repeat_rate=self.aisbench_repeat_rate,
                 dp=self.dp
                 generation_kwargs=self.generation_kwargs,
