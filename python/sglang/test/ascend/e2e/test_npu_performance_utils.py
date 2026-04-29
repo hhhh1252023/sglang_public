@@ -417,7 +417,6 @@ def run_aisbench(
     num_prompts,
     image_resolution=None,
     random_range_ratio=1,
-
     prefix_hit_rate=None,
     aisbench_request_rate=None,
     aisbench_repeat_rate=None,
@@ -498,7 +497,6 @@ def run_aisbench(
     cmd += f"--batch-size {str(max_concurrency)} "
     cmd += f"--num-prompts {str(num_prompts)} "
     cmd += f"--output-path {result_path}"
-
 
     if prefix_hit_rate is not None:
         cmd += f" --prefix-hit-rate {prefix_hit_rate}"
@@ -804,7 +802,6 @@ class TestAscendPerformanceTestCaseBase(CustomTestCase):
                 num_prompts=self.num_prompts,
                 image_resolution=self.image_resolution,
                 random_range_ratio=self.random_range_ratio,
-
                 prefix_hit_rate=self.prefix_hit_rate,
                 aisbench_request_rate=self.aisbench_request_rate,
                 aisbench_repeat_rate=self.aisbench_repeat_rate,
