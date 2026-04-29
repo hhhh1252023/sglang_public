@@ -498,7 +498,7 @@ def run_aisbench(
     cmd += f"--batch-size {str(max_concurrency)} "
     cmd += f"--num-prompts {str(num_prompts)} "
     cmd += f"--output-path {result_path}"
-    
+
 
     if prefix_hit_rate is not None:
         cmd += f" --prefix-hit-rate {prefix_hit_rate}"
