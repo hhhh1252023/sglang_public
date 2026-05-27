@@ -1,4 +1,3 @@
-import os
 import unittest
 
 from sglang.test.ascend.e2e.test_npu_performance_utils import (
@@ -8,10 +7,6 @@ from sglang.test.ascend.e2e.test_npu_performance_utils import (
     ROUND_ROBIN,
     TestAscendPerfMultiNodePdSepTestCaseBase,
 )
-
-# ConfigMap相关配置
-CONFIGMAP_NAME = os.environ.get("KUBE_CONFIG_MAP")
-NAMESPACE = os.environ.get("NAMESPACE")
 
 MODEL_CONFIG = {
     "model_path": DEEPSEEK_R1_W8A8_MODEL_PATH,
@@ -149,7 +144,14 @@ MODEL_CONFIG = {
 }
 
 
-class TestManualDeploy(TestAscendPerfMultiNodePdSepTestCaseBase):
+class TestNPUBucketAdjustIntervalSecsConcurrency(TestAscendPerfMultiNodePdSepTestCaseBase):
+    """Testcase：Verify after configuring the --bucket-adjust-interval-secs parameter for the PD classification scenario
+    router, the service can stably support 2048 concurrent requests
+
+    [Test Category] Parameter
+    [Test Target] --bucket-adjust-interval-secs
+    """
+
     benchmark_tool = BENCHMARK_TOOL_DEFAULT
     aisbench_dataset_type = AISBENCHMARK_DATASET_DEFAULT
     model_config = MODEL_CONFIG
