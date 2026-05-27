@@ -34,6 +34,10 @@ jobs:
           UV_INDEX_URL: "http://cache-service.nginx-pypi-cache.svc.cluster.local/pypi/simple"
           GITHUB_PROXY_URL: "https://gh-proxy.test.osinfra.cn/"
         run: |
+          # Clean up potential residual files from previous runs
+          rm -f ./deep_ep_cpp.cpython-311-aarch64-linux-gnu.so
+          rm -rf sgl-kernel-npu
+
           # speed up by using infra cache services
           CACHING_URL="cache-service.nginx-pypi-cache.svc.cluster.local"
           sed -Ei "s@(ports|archive).ubuntu.com@${CACHING_URL}:8081@g" /etc/apt/sources.list
