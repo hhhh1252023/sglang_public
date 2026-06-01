@@ -1,8 +1,8 @@
 import unittest
 
+from sglang.test import test_utils as _test_utils
 from sglang.test.ascend.test_ascend_utils import LLAMA_3_1_8B_INSTRUCT_WEIGHTS_PATH
 from sglang.test.ci.ci_register import register_npu_ci
-from sglang.test import test_utils as _test_utils
 from sglang.test.test_utils import CustomTestCase, run_bench_serving, run_mmlu_test
 
 register_npu_ci(
@@ -24,7 +24,9 @@ class TestNoChunkedPrefill(CustomTestCase):
         _test_utils.DEFAULT_MODEL_NAME_FOR_TEST = LLAMA_3_1_8B_INSTRUCT_WEIGHTS_PATH
         try:
             run_mmlu_test(
-                disable_radix_cache=False, enable_mixed_chunk=False, chunked_prefill_size=-1
+                disable_radix_cache=False,
+                enable_mixed_chunk=False,
+                chunked_prefill_size=-1
             )
         finally:
             _test_utils.DEFAULT_MODEL_NAME_FOR_TEST = original_model
