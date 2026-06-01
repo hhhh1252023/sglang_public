@@ -106,7 +106,7 @@ class TestNpuSpeculativeTokenMap(CustomTestCase):
             "--speculative-num-steps",
             "5",
             "--speculative-eagle-topk",
-            "4",
+            "1",
             "--speculative-num-draft-tokens",
             "8",
             "--speculative-token-map",
