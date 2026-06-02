@@ -1,16 +1,15 @@
 import unittest
 
-from sglang.test.ascend.e2e.test_npu_multi_node_utils import NIC_NAME
 from sglang.test.ascend.e2e.test_npu_accuracy_utils import (
     TestAscendAccuracyTestCaseBase,
 )
+from sglang.test.ascend.e2e.test_npu_multi_node_utils import NIC_NAME
 from sglang.test.ascend.e2e.test_npu_performance_utils import (
     AISBENCHMARK_DATASET_DEFAULT,
     BENCHMARK_TOOL_DEFAULT,
+    KIMI_K2_6_W4A8_MODEL_PATH,
     TestAscendPerformanceTestCaseBase,
-    KIMI_K2_6_W4A8_MODEL_PATH
 )
-
 from sglang.test.ci.ci_register import register_npu_ci
 
 register_npu_ci(
