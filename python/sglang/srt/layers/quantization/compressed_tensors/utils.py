@@ -1,5 +1,6 @@
 # Adapted from https://github.com/vllm-project/vllm/tree/main/vllm/model_executor/layers/quantization/compressed_tensors
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
 
 import re
 from types import MappingProxyType
@@ -14,6 +15,7 @@ def is_activation_quantization_format(format: str) -> bool:
         CompressionFormat.naive_quantized.value,
         CompressionFormat.int_quantized.value,
         CompressionFormat.float_quantized.value,
+        CompressionFormat.nvfp4_pack_quantized.value,
     ]
     return format in _ACTIVATION_QUANTIZATION_FORMATS
 
