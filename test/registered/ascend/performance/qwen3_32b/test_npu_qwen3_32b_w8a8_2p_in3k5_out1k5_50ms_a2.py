@@ -90,6 +90,7 @@ QWEN3_32B_OTHER_ARGS = [
 class TestQwen32B_MMLUPro(TestAscendAccuracyTestCaseBase):
     """Test NPU accuracy for Qwen3-32B-W8A8 on MMLU-Pro"""
 
+    base_url = DEFAULT_URL_FOR_TEST
     model = QWEN3_32B_W8A8_MODEL_PATH
     other_args = QWEN3_32B_OTHER_ARGS
     envs = QWEN3_32B_ENVS
