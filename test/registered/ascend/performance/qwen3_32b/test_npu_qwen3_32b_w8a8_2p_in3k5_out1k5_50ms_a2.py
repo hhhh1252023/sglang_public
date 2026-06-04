@@ -100,7 +100,7 @@ class TestQwen32B_MMLUPro(TestAscendAccuracyTestCaseBase):
     generation_config = {"max_tokens": 40000, "temperature": 1.0}
 
     @classmethod
-    def tearDownClass(cls):
+    def setUpClass(cls):
         pass
 
     def test_qwen3_32b_mmlu_pro(self):
@@ -124,7 +124,7 @@ class TestQwen32B(TestAscendPerformanceTestCaseBase):
     output_token_throughput = 1600
 
     @classmethod
-    def setUpClass(cls):
+    def tearDownClass(cls):
         pass
 
     def test_qwen3_32b(self):
