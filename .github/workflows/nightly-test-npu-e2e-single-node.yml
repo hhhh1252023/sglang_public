@@ -156,6 +156,7 @@ jobs:
 
           echo "test_status=${test_status}" >> $GITHUB_ENV
           echo "tc_name=${tc_name}" >> $GITHUB_ENV
+          export test_status tc_name
 
           echo "## ${tc_name}  ${status_icon} ${test_status}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
