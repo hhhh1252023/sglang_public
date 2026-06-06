@@ -387,7 +387,9 @@ class TestNPUSessionLatency(CustomTestCase):
                 f"(regular={reg_tail:.1f}ms, streaming={stm_tail:.1f}ms, speedup={speedup:.2f}x)",
             )
 
-    @unittest.skip("NPU: streaming session correctness issue - 30/30 turns differ, requires backend fix")
+    @unittest.skip(
+        "NPU: streaming session correctness issue - 30/30 turns differ, requires backend fix"
+    )
     def test_streaming_session_correctness(self):
         correctness_turns = 30
         reg = self._run_concurrent_session(

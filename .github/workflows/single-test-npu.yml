@@ -1,5 +1,5 @@
 name: Single Test (NPU)
-# test round 10: Sessions test cases - Skip problematic streaming correctness test
+# test round 11: Sessions test cases - Fix lint formatting
 
 on:
   pull_request:
