@@ -278,6 +278,7 @@ jobs:
       prefill_decode_deployment: 'mix'
       transformers_version: ''
   check-all-jobs:
+    if: ${{ !cancelled() }}
     needs:
       - nightly-poc-single-node-tests
       - nightly-poc-multi-node-tests
