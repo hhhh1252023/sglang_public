@@ -1,5 +1,5 @@
 name: Single Test (NPU)
-# test round 9: Sessions test cases - Relaxed streaming correctness tolerance
+# test round 10: Sessions test cases - Skip problematic streaming correctness test
 
 on:
   pull_request:
