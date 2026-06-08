@@ -93,7 +93,7 @@ KIMI_K2_6_OTHER_ARGS = [
 
 class TestKimiK25W4A8(TestAscendPerformanceTestCaseBase):
     benchmark_tool = BENCHMARK_TOOL_DEFAULT
-    aisbench_dataset_type = AISBENCHMARK_DATASET_DEFAULT
+    dataset_type = AISBENCHMARK_DATASET_DEFAULT
     max_attempts = 5
     model = KIMI_K2_6_W4A8_MODEL_PATH
     other_args = KIMI_K2_6_OTHER_ARGS

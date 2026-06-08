@@ -86,6 +86,8 @@ MINIMAX_M2_5_128K_PREFIX_OTHER_ARGS = [
     "--trust-remote-code",
     "--tokenizer-worker-num",
     8,
+    "--watchdog-timeout",
+    9000,
 ]
 
 
