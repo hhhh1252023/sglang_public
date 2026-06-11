@@ -42,7 +42,7 @@ class TestAscendBasic(CustomTestCase):
 
     def test_ascend_sleep_on_idle(self):
         pid = run_command(
-            f"ps -ef | grep -E 'sglang::scheduler' | grep -v grep | grep -w {self.process.pid} | tr -s ' '|cut -d' ' -f2"
+            f"ps -ef | grep -E 'sglang::scheduler' | grep -v grep | awk '$3 == {self.process.pid}' | tr -s ' '|cut -d' ' -f2"
         )
         self.cpu = run_command(f"ps -p {pid.strip()} -o %cpu --no-headers | xargs")
         self.cpu_float = float(self.cpu.strip())
@@ -99,7 +99,7 @@ class TestSleepOnIdle(CustomTestCase):
 
     def test_add_sleep_on_idle(self):
         pid_sleep_on = run_command(
-            f"ps -ef | grep -E 'sglang::scheduler' | grep -v grep | grep -w {self.process.pid} | tr -s ' '|cut -d' ' -f2"
+            f"ps -ef | grep -E 'sglang::scheduler' | grep -v grep | awk '$3 == {self.process.pid}' | tr -s ' '|cut -d' ' -f2"
         )
         self.cpu_sleep_on = run_command(
             f"ps -p {pid_sleep_on.strip()} -o %cpu --no-headers | xargs"
