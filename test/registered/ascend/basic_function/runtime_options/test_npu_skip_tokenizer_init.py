@@ -159,9 +159,11 @@ class TestSkipTokenizerInit(CustomTestCase):
             print(line)
             if line.startswith(b"data: ") and line[6:] != b"[DONE]":
                 response_stream_json.append(json.loads(line[6:]))
+
         out_stream_ids = []
         for x in response_stream_json:
-            out_stream_ids += x["output_ids"]
+            out_stream_ids.append(x["output_ids"][-1])
+    
         print("output from streaming request:")
         print(out_stream_ids)
         print(self.tokenizer.decode(out_stream_ids, skip_special_tokens=True))
