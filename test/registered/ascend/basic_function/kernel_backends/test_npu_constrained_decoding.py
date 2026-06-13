@@ -37,7 +37,6 @@ class ServerWithGrammar(CustomTestCase):
             cls.backend,
             "--attention-backend",
             "ascend",
-            "--disable-cuda-graph",
         ]
 
         if cls.disable_overlap:
