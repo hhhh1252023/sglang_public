@@ -41,9 +41,9 @@ class TestMaxQueuedRequests(CustomTestCase):
             cls.base_url,
             timeout=DEFAULT_TIMEOUT_FOR_SERVER_LAUNCH,
             other_args=(
-                "--max-running-requests",   # Enforce max request concurrency is 1
+                "--max-running-requests",  # Enforce max request concurrency is 1
                 "1",
-                "--max-queued-requests",    # Enforce max queued request number is 1
+                "--max-queued-requests",  # Enforce max queued request number is 1
                 "1",
                 "--attention-backend",
                 "ascend",
@@ -67,7 +67,7 @@ class TestMaxQueuedRequests(CustomTestCase):
         )
 
         for status_code in status_codes:
-            assert status_code == 200   # request shouldn't be throttled
+            assert status_code == 200  # request shouldn't be throttled
 
     def test_max_queued_requests_validation_with_concurrent_requests(self):
         """Verify request throttling with concurrent requests."""
