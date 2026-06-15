@@ -29,6 +29,7 @@ class TestBasicSanityEagle3(
 ):
     served_model_name = QWEN3_8B_WEIGHTS_PATH
 
+    model = QWEN3_8B_WEIGHTS_PATH
     gsm8k_num_questions = 1400
     gsm8k_accuracy_thres = 0.74
 
