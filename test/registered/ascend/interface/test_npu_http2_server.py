@@ -1,6 +1,7 @@
 import subprocess
 import unittest
 
+import granian  # noqa: F401
 import requests
 
 from sglang.srt.utils import kill_process_tree
@@ -12,7 +13,6 @@ from sglang.test.test_utils import (
     CustomTestCase,
     popen_launch_server,
 )
-import granian  # noqa: F401
 
 _HAS_GRANIAN = True
 
