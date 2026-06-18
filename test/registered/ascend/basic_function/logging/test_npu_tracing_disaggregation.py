@@ -151,13 +151,9 @@ class TestNPUTracingDisaggregation(TestDisaggregationBase):
     def test_disaggregation_transfer_spans(self):
         """Test that disaggregation produces transfer-related spans."""
         # Set trace level on both prefill and decode servers
-        response = requests.get(
-            f"{self.prefill_url}/set_trace_level?level=1"
-        )
+        response = requests.get(f"{self.prefill_url}/set_trace_level?level=1")
         self.assertEqual(response.status_code, 200)
-        response = requests.get(
-            f"{self.decode_url}/set_trace_level?level=1"
-        )
+        response = requests.get(f"{self.decode_url}/set_trace_level?level=1")
         self.assertEqual(response.status_code, 200)
         self.collector.clear()
 
