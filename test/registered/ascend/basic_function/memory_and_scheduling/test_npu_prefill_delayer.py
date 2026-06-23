@@ -3,16 +3,14 @@ import os
 import re
 import time
 import unittest
-from dataclasses import dataclass
+
 from types import SimpleNamespace
-from typing import List, Optional
+from typing import  Optional
 
 import openai
 import requests
-import torch
 
 from sglang.bench_serving import run_benchmark
-from sglang.srt.managers.prefill_delayer import PrefillDelayer
 from sglang.srt.utils import kill_process_tree
 from sglang.test.ascend.test_ascend_utils import (
     DEEPSEEK_CODER_V2_LITE_WEIGHTS_PATH,
