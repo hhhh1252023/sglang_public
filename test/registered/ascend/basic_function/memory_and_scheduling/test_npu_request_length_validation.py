@@ -23,6 +23,7 @@ class TestRequestLengthValidation(CustomTestCase):
     [Test Category] Parameter
     [Test Target] --max-total-tokens, --context-length
     """
+
     @classmethod
     def setUpClass(cls):
         cls.base_url = DEFAULT_URL_FOR_TEST
@@ -134,4 +135,3 @@ class TestRequestLengthValidation(CustomTestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

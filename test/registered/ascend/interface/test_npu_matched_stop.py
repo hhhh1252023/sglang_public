@@ -20,6 +20,7 @@ class TestMatchedStop(CustomTestCase, MatchedStopMixin):
     [Test Category] Interface
     [Test Target] /v1/chat/completions; /v1/completions
     """
+
     @classmethod
     def setUpClass(cls):
         cls.model = LLAMA_3_1_8B_INSTRUCT_WEIGHTS_PATH
