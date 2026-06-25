@@ -547,8 +547,9 @@ class TestNPUSessionControl(CustomTestCase):
         print(outputs_normal)
         self.assertTrue(len(outputs_from_session) > 0)
         self.assertEqual(
-            len(outputs_from_session), len(outputs_normal),
-            f"outputs_from_session: {outputs_from_session}, outputs_normal: {outputs_normal}"
+            len(outputs_from_session),
+            len(outputs_normal),
+            f"outputs_from_session: {outputs_from_session}, outputs_normal: {outputs_normal}",
         )
 
     def test_session_control_with_branching(self):
