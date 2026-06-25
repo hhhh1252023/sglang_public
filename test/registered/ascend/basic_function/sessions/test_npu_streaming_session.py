@@ -1,115 +1,183 @@
+"""
+Streaming session tests for NPU.
+
+Tests:
+  - KV cache inheritance
+  - Concurrent logprob leak detection
+  - Abort recovery
+  - Long session stability
+  - EAGLE3 speculative decoding
+"""
+
 import unittest
 
-from sglang.test.ascend.test_ascend_utils import LLAMA_3_2_1B_INSTRUCT_WEIGHTS_PATH
+from sglang.test.ascend.test_ascend_utils import (
+    QWEN3_8B_EAGLE3_WEIGHTS_PATH,
+    QWEN3_8B_WEIGHTS_PATH,
+)
 from sglang.test.ci.ci_register import register_npu_ci
-from sglang.test.kits.streaming_session_kit import (
-    AbortLeakReproKitMixin,
-    StreamingSessionKitMixin,
-)
-from sglang.test.server_fixtures.streaming_session_fixture import (
-    ABORT_REPRO_CHUNKED_PREFILL_SIZE,
-    ABORT_REPRO_CONTEXT_LEN,
-    ABORT_REPRO_PAGE_SIZE,
-)
+from sglang.test.kits.streaming_session_kit import StreamingSessionKitMixin
 
-register_npu_ci(est_time=691, suite="nightly-2-npu-a3", nightly=True)
+register_npu_ci(est_time=400, suite="full-1-npu-a3", nightly=True)
 
 
-class TestNPUStreamingSession(unittest.TestCase, StreamingSessionKitMixin):
-    """Test streaming session functionality on NPU.
-
-    [Test Category] Feature
-    [Test Target] StreamingSession, KV cache inheritance, abort recovery
-    """
-
-    model = LLAMA_3_2_1B_INSTRUCT_WEIGHTS_PATH
+class TestNPUStreamingSession(StreamingSessionKitMixin, unittest.TestCase):
+    model = QWEN3_8B_WEIGHTS_PATH
     extra_args = [
         "--attention-backend",
         "ascend",
         "--disable-cuda-graph",
         "--disable-piecewise-cuda-graph",
-        "--chunked-prefill-size",
-        "512",
+        "--enable-streaming-session",
         "--mem-fraction-static",
-        "0.70",
-    ]
-
-    @classmethod
-    def setUpClass(cls):
-        from sglang.srt.utils.hf_transformers_utils import get_tokenizer
-        from sglang.test.test_utils import (
-            DEFAULT_TIMEOUT_FOR_SERVER_LAUNCH,
-            DEFAULT_URL_FOR_TEST,
-            popen_launch_server,
-        )
-
-        cls.base_url = DEFAULT_URL_FOR_TEST
-        cls.process = popen_launch_server(
-            cls.model,
-            cls.base_url,
-            timeout=DEFAULT_TIMEOUT_FOR_SERVER_LAUNCH,
-            other_args=["--enable-streaming-session"] + cls.extra_args,
-        )
-        cls.tokenizer = get_tokenizer(cls.model)
-
-    @classmethod
-    def tearDownClass(cls):
-        from sglang.srt.utils import kill_process_tree
-
-        kill_process_tree(cls.process.pid)
-
-
-class TestNPUStreamingSessionAbortLeakRepro(unittest.TestCase, AbortLeakReproKitMixin):
-    """Test abort-heavy chunked prefill leak repro on NPU.
-
-    [Test Category] Stress
-    [Test Target] StreamingSession abort recovery, memory leak prevention
-    """
-
-    model = LLAMA_3_2_1B_INSTRUCT_WEIGHTS_PATH
-    extra_args = [
-        "--attention-backend",
-        "ascend",
-        "--disable-cuda-graph",
-        "--disable-piecewise-cuda-graph",
-        "--chunked-prefill-size",
-        str(ABORT_REPRO_CHUNKED_PREFILL_SIZE),
-        "--context-length",
-        str(ABORT_REPRO_CONTEXT_LEN),
+        "0.7",
         "--page-size",
-        str(ABORT_REPRO_PAGE_SIZE),
-        "--max-running-requests",
-        "32",
-        "--log-level",
-        "info",
+        "4",
+    ]
+    kv_inherit_offset = 0
+
+
+class TestNPUStreamingSessionLargePage(TestNPUStreamingSession):
+    extra_args = [
+        "--attention-backend",
+        "ascend",
+        "--disable-cuda-graph",
+        "--disable-piecewise-cuda-graph",
+        "--enable-streaming-session",
         "--mem-fraction-static",
-        "0.70",
+        "0.7",
+        "--page-size",
+        "256",
     ]
 
-    @classmethod
-    def setUpClass(cls):
-        from sglang.srt.utils.hf_transformers_utils import get_tokenizer
-        from sglang.test.test_utils import (
-            DEFAULT_TIMEOUT_FOR_SERVER_LAUNCH,
-            DEFAULT_URL_FOR_TEST,
-            popen_launch_server,
-        )
 
-        cls.base_url = DEFAULT_URL_FOR_TEST
-        cls.process = popen_launch_server(
-            cls.model,
-            cls.base_url,
-            timeout=DEFAULT_TIMEOUT_FOR_SERVER_LAUNCH,
-            other_args=["--enable-streaming-session"] + cls.extra_args,
-        )
-        cls.tokenizer = get_tokenizer(cls.model)
+class TestNPUStreamingSessionEagle3(TestNPUStreamingSession):
+    model = QWEN3_8B_WEIGHTS_PATH
+    extra_args = [
+        "--attention-backend",
+        "ascend",
+        "--disable-cuda-graph",
+        "--disable-piecewise-cuda-graph",
+        "--enable-streaming-session",
+        "--speculative-algorithm",
+        "EAGLE3",
+        "--speculative-draft-model-path",
+        QWEN3_8B_EAGLE3_WEIGHTS_PATH,
+        "--speculative-num-steps",
+        "3",
+        "--speculative-eagle-topk",
+        "1",
+        "--speculative-num-draft-tokens",
+        "4",
+        "--mem-fraction-static",
+        "0.7",
+        "--page-size",
+        "4",
+    ]
+    kv_inherit_offset = -1
 
-    @classmethod
-    def tearDownClass(cls):
-        from sglang.srt.utils import kill_process_tree
 
-        kill_process_tree(cls.process.pid)
+class TestNPUStreamingSessionEagle3LargePage(TestNPUStreamingSession):
+    model = QWEN3_8B_WEIGHTS_PATH
+    extra_args = [
+        "--attention-backend",
+        "ascend",
+        "--disable-cuda-graph",
+        "--disable-piecewise-cuda-graph",
+        "--enable-streaming-session",
+        "--speculative-algorithm",
+        "EAGLE3",
+        "--speculative-draft-model-path",
+        QWEN3_8B_EAGLE3_WEIGHTS_PATH,
+        "--speculative-num-steps",
+        "3",
+        "--speculative-eagle-topk",
+        "1",
+        "--speculative-num-draft-tokens",
+        "4",
+        "--mem-fraction-static",
+        "0.7",
+        "--page-size",
+        "256",
+    ]
+    kv_inherit_offset = -1
 
 
-if __name__ == "__main__":
-    unittest.main()
+class TestNPUStreamingSessionRetract(TestNPUStreamingSession):
+    extra_args = [
+        "--attention-backend",
+        "ascend",
+        "--disable-cuda-graph",
+        "--disable-piecewise-cuda-graph",
+        "--enable-streaming-session",
+        "--mem-fraction-static",
+        "0.7",
+        "--page-size",
+        "4",
+    ]
+    env_overrides = [("SGLANG_TEST_RETRACT", True)]
+
+
+class TestNPUStreamingSessionEagle3Retract(TestNPUStreamingSession):
+    model = QWEN3_8B_WEIGHTS_PATH
+    extra_args = [
+        "--attention-backend",
+        "ascend",
+        "--disable-cuda-graph",
+        "--disable-piecewise-cuda-graph",
+        "--enable-streaming-session",
+        "--speculative-algorithm",
+        "EAGLE3",
+        "--speculative-draft-model-path",
+        QWEN3_8B_EAGLE3_WEIGHTS_PATH,
+        "--speculative-num-steps",
+        "3",
+        "--speculative-eagle-topk",
+        "1",
+        "--speculative-num-draft-tokens",
+        "4",
+        "--mem-fraction-static",
+        "0.7",
+        "--page-size",
+        "4",
+    ]
+    env_overrides = [("SGLANG_TEST_RETRACT", True)]
+    kv_inherit_offset = -1
+
+
+class TestNPUStreamingSessionEagle3RetractLargePage(TestNPUStreamingSession):
+    model = QWEN3_8B_WEIGHTS_PATH
+    extra_args = [
+        "--attention-backend",
+        "ascend",
+        "--disable-cuda-graph",
+        "--disable-piecewise-cuda-graph",
+        "--enable-streaming-session",
+        "--speculative-algorithm",
+        "EAGLE3",
+        "--speculative-draft-model-path",
+        QWEN3_8B_EAGLE3_WEIGHTS_PATH,
+        "--speculative-num-steps",
+        "3",
+        "--speculative-eagle-topk",
+        "1",
+        "--speculative-num-draft-tokens",
+        "4",
+        "--mem-fraction-static",
+        "0.7",
+        "--page-size",
+        "256",
+    ]
+    env_overrides = [("SGLANG_TEST_RETRACT", True)]
+    kv_inherit_offset = -1
+
+
+__all__ = [
+    "TestNPUStreamingSession",
+    "TestNPUStreamingSessionLargePage",
+    "TestNPUStreamingSessionEagle3",
+    "TestNPUStreamingSessionEagle3LargePage",
+    "TestNPUStreamingSessionRetract",
+    "TestNPUStreamingSessionEagle3Retract",
+    "TestNPUStreamingSessionEagle3RetractLargePage",
+]
