@@ -38,6 +38,7 @@ NPU adaptation notes (see report for the full rationale):
     loudly; the rest of the test does not depend on it.
 """
 
+import json
 import logging
 import unittest
 
@@ -106,10 +107,31 @@ class TestHiCacheStorageRuntimeAttachDetach(CustomTestCase):
         )
 
     @staticmethod
-    def _attach_backend(base_url, backend, extra_cfg=None, headers=None):
-        payload = {"backend": backend}
-        if extra_cfg is not None:
-            payload["extra_config"] = extra_cfg
+    def _attach_backend(
+        base_url,
+        backend,
+        extra_config=None,
+        prefetch_policy=None,
+        write_policy=None,
+        headers=None,
+    ):
+        """PUT /hicache/storage-backend.
+
+        Field names must match `AttachHiCacheStorageReqInput`:
+          - hicache_storage_backend (str, required)
+          - hicache_storage_backend_extra_config_json (JSON string)
+          - hicache_storage_prefetch_policy (str)
+          - hicache_write_policy (str)
+        """
+        payload = {"hicache_storage_backend": backend}
+        if extra_config is not None:
+            payload["hicache_storage_backend_extra_config_json"] = json.dumps(
+                extra_config
+            )
+        if prefetch_policy is not None:
+            payload["hicache_storage_prefetch_policy"] = prefetch_policy
+        if write_policy is not None:
+            payload["hicache_write_policy"] = write_policy
         return requests.put(
             f"{base_url}/hicache/storage-backend",
             json=payload,
@@ -194,12 +216,12 @@ class TestHiCacheStorageRuntimeAttachDetach(CustomTestCase):
             # 2) Fresh server: no backend attached yet.
             resp = self._get_backend(base_url_b, headers=admin)
             self.assertEqual(resp.status_code, 200)
-            self.assertIsNone(resp.json().get("backend"))
+            self.assertIsNone(resp.json().get("hicache_storage_backend"))
 
             # 3) Attach `file` backend with an extra config -> 200.
             extra_cfg = {"hicache_storage_pass_prefix_keys": True}
             resp = self._attach_backend(
-                base_url_b, "file", extra_cfg=extra_cfg, headers=admin
+                base_url_b, "file", extra_config=extra_cfg, headers=admin
             )
             self.assertEqual(resp.status_code, 200, resp.text)
 
@@ -207,7 +229,7 @@ class TestHiCacheStorageRuntimeAttachDetach(CustomTestCase):
             resp = self._attach_backend(
                 base_url_b,
                 "file",
-                extra_cfg={"hicache_storage_prefetch_policy": "wait_complete"},
+                prefetch_policy="wait_complete",
                 headers=admin,
             )
             self.assertEqual(resp.status_code, 200, resp.text)
@@ -225,7 +247,7 @@ class TestHiCacheStorageRuntimeAttachDetach(CustomTestCase):
             # 7) After detach, GET should report backend == None again.
             resp = self._get_backend(base_url_b, headers=admin)
             self.assertEqual(resp.status_code, 200)
-            self.assertIsNone(resp.json().get("backend"))
+            self.assertIsNone(resp.json().get("hicache_storage_backend"))
 
             # 8) Re-attach `file` -> 200 (server still healthy after detach).
             resp = self._attach_backend(base_url_b, "file", headers=admin)
