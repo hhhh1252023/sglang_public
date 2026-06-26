@@ -141,6 +141,7 @@ class TestJSONModeXGrammar(ServerWithGrammarBackend, TestJSONModeMixin):
 
     backend = "xgrammar"
 
+
 class TestJSONModeOutlines(ServerWithGrammarBackend, TestJSONModeMixin):
     backend = "outlines"
 
