@@ -22,18 +22,27 @@ DEEPSEEK_V2_DEEPEP_COMMON_ENVS = {
 
 _DEEPSEEK_V2_DEEPEP_COMMON_ARGS = [
     "--trust-remote-code",
-    "--attention-backend", "ascend",
-    "--tp-size", "8",
-    "--moe-a2a-backend", "deepep",
+    "--attention-backend",
+    "ascend",
+    "--tp-size",
+    "8",
+    "--moe-a2a-backend",
+    "deepep",
     "--disable-cuda-graph",
-    "--dp-size", "8",
+    "--dp-size",
+    "8",
     "--enable-dp-attention",
-    "--chunked-prefill-size", "1024",
-    "--mem-fraction-static", "0.7",
+    "--chunked-prefill-size",
+    "1024",
+    "--mem-fraction-static",
+    "0.7",
 ]
 
 DEEPSEEK_V2_LOW_LATENCY_ARGS = (
-    _DEEPSEEK_V2_DEEPEP_COMMON_ARGS + ["--deepep-mode", "low_latency"]
+    _DEEPSEEK_V2_DEEPEP_COMMON_ARGS + [
+        "--deepep-mode",
+        "low_latency",
+    ]
 )
 
 
