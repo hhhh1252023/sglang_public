@@ -1,6 +1,10 @@
 name: Test MMMU Dataset Download
 
 on:
+  pull_request:
+    paths:
+      - "python/sglang/test/ascend/e2e/test_npu_accuracy_utils.py"
+      - ".github/workflows/test-mmmu-download.yml"
   workflow_dispatch:
     inputs:
       image:
