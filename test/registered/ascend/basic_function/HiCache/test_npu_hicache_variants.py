@@ -1,8 +1,4 @@
-"""NPU adaptation of the EAGLE3 variant from test_hicache_variants.py.
-
-Usage:
-    python3 -m pytest test/registered/ascend/basic_function/HiCache/test_npu_hicache_variants.py -v
-"""
+"""NPU adaptation of the EAGLE3 variant from test_hicache_variants.py."""
 
 import unittest
 from types import SimpleNamespace

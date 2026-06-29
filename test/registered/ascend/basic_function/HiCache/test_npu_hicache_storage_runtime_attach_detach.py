@@ -1,8 +1,4 @@
-"""NPU adaptation of test_hicache_storage_runtime_attach_detach.py.
-
-Usage:
-    python3 -m pytest test/registered/ascend/basic_function/HiCache/test_npu_hicache_storage_runtime_attach_detach.py -v
-"""
+"""NPU adaptation of test_hicache_storage_runtime_attach_detach.py."""
 
 import json
 import logging

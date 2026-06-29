@@ -1,8 +1,4 @@
-"""NPU adaptation of test_hicache_storage_file_backend.py.
-
-Usage:
-    python3 -m pytest test/registered/ascend/basic_function/HiCache/test_npu_hicache_storage_file_backend.py -v
-"""
+"""NPU adaptation of test_hicache_storage_file_backend.py."""
 
 import logging
 import os
