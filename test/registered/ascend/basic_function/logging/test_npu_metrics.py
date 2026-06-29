@@ -1,3 +1,4 @@
+import json
 import os
 import tempfile
 import unittest
@@ -12,13 +13,13 @@ from sglang.srt.observability.metrics_collector import (
     STAT_LOGGER_ROLE_SCHEDULER,
     SchedulerMetricsCollector,
 )
-# from sglang.test.ascend.test_ascend_utils import QWEN3_0_6B_WEIGHTS_PATH
+# from sglang.test.ascend.test_ascend_utils import QWEN3_0_6B_WEIGHTS_PATH as _MODEL_NAME
 _MODEL_NAME="/home/weights/Qwen3-0.6B"
 from sglang.test.ascend.test_npu_logging import TestNPULoggingBase
 from sglang.test.ci.ci_register import register_npu_ci
 from sglang.test.test_utils import CustomTestCase
 
-register_npu_ci(est_time=120, suite="full-1-npu-a3", nightly=True)
+register_npu_ci(est_time=120, suite="full-2-npu-a3", nightly=True)
 
 
 class TestNPUMetricsMFUEnabled(TestNPULoggingBase):
@@ -150,16 +151,6 @@ class TestNPUMetrics2NPU(TestNPULoggingBase):
         metrics = _parse_prometheus_metrics(metrics_text)
         _verify_metrics_common(self, metrics_text, metrics, expect_mfu_metrics=True)
 
-        # In the GPU scenario test case
-        # (test/registered/observability/test_metrics.py), the 2-card scenario
-        # contains assertions about the following monitoring metrics:
-        #   ("sglang:dp_cooperation_forward_execution_seconds_total",
-        #    {"category": "extend"}),
-        #   ("sglang:dp_cooperation_forward_execution_seconds_total",
-        #    {"category": "decode"}),
-        # However, these two indicators were not found during execution on the
-        # GPU, and it is uncertain whether it is a problem or if monitoring of
-        # these indicators is currently not supported.
         metrics_to_check = [
             (
                 "sglang:dp_cooperation_realtime_tokens_total",
@@ -168,6 +159,14 @@ class TestNPUMetrics2NPU(TestNPULoggingBase):
             (
                 "sglang:dp_cooperation_realtime_tokens_total",
                 {"mode": "decode"},
+            ),
+            (
+                "sglang:dp_cooperation_forward_execution_seconds_total",
+                {"category": "extend"},
+            ),
+            (
+                "sglang:dp_cooperation_forward_execution_seconds_total",
+                {"category": "decode"},
             ),
         ]
         _check_metrics_positive(self, metrics, metrics_to_check)
@@ -466,7 +465,6 @@ class TestNPUStatLoggersDI(CustomTestCase):
             "Custom SchedulerMetricsCollector was not instantiated; "
             "stat_loggers DI did not take effect.",
         )
-
 
 # Path to the cross-process marker file for the FakeRayMetric-style recording
 # variant below. Distinct from ``_DI_MARKER_PATH`` so the two scheduler
