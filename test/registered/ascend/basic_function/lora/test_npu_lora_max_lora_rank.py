@@ -39,7 +39,7 @@ class TestLoraMaxLoraRank(CustomTestCase):
             "--max-lora-rank",
             cls.max_lora_rank,
             "--lora-backend",
-            "ascend"
+            "ascend",
             "--attention-backend",
             "ascend",
             "--disable-cuda-graph",
