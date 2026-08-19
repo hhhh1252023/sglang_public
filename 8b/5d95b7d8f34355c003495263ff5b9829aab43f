@@ -1,0 +1,37 @@
+.github/workflows/nightly-test-npu.yml
+  s_cea59cbd531938::t_e9c3adc8419643 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "8b5d95b7d8f34355c003495263ff5b9829aab43f",
+  "prompts": {},
+  "humans": {
+    "h_43a4d5a5d81cee": {
+      "author": "hhhh1252023 <3112883793@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_cea59cbd531938": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a82be4f25a8e5b6ae2503c8",
+        "model": "glm-5.2"
+      },
+      "human_author": "hhhh1252023 <3112883793@qq.com>",
+      "custom_attributes": {
+        "client_type": "ide",
+        "source_scene": "agent",
+        "runtime_client": "trae-tob-git-ai",
+        "external_session_id": "6a82be4f25a8e5b6ae2503c8",
+        "edit_kind": "file_edit",
+        "session_id": "6a82be4f25a8e5b6ae2503c8",
+        "dedupe_key": "6a82be4f25a8e5b6ae2503c8:6a856718c59315838c127d6d:afterEdit:371fbbfc",
+        "tool_type": "builtin",
+        "operation_id": "6a856718c59315838c127d6d",
+        "tool_use_id": "6a856718c59315838c127d6d",
+        "tool_id": "icube:applyChatSnapshotPatch"
+      }
+    }
+  }
+}
