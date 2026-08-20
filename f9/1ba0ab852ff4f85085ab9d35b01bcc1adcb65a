@@ -1,0 +1,48 @@
+python/sglang/test/ascend/e2e/run_npu_testcase.sh
+  s_41706b3b90ce1a::t_a93c42e137f0d3 1-5,9-17,137
+  s_41706b3b90ce1a::t_3767bb2011c43e 126-136,138-169,171-184,186-222,224-231
+python/sglang/test/ascend/e2e/run_npu_e2e_test.py
+  s_41706b3b90ce1a::t_5e20f242ec14a5 524-545
+  s_41706b3b90ce1a::t_24cf783ee61fef 583,588-590
+  s_41706b3b90ce1a::t_f81c995754997d 326-330,332-339
+  s_41706b3b90ce1a::t_4dc8a943e55aa8 741-745,748-752,761-770
+  s_41706b3b90ce1a::t_abad5415e23310 374-376,387,400,402-418
+.github/workflows/full-test-npu.yml
+  s_41706b3b90ce1a::t_e696a6cc33f53d 115,122-124,128,195
+.github/workflows/nightly-test-npu-e2e-multi-node.yml
+  s_41706b3b90ce1a::t_14c5e6070ab655 165
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "f91ba0ab852ff4f85085ab9d35b01bcc1adcb65a",
+  "prompts": {},
+  "humans": {
+    "h_43a4d5a5d81cee": {
+      "author": "hhhh1252023 <3112883793@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_41706b3b90ce1a": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a86b60ec59315838c128071",
+        "model": "glm-5.2"
+      },
+      "human_author": "hhhh1252023 <3112883793@qq.com>",
+      "custom_attributes": {
+        "runtime_client": "trae-tob-git-ai",
+        "session_id": "6a86b60ec59315838c128071",
+        "client_type": "ide",
+        "tool_type": "builtin",
+        "tool_id": "icube:applyChatSnapshotPatch",
+        "edit_kind": "file_edit",
+        "tool_use_id": "6a86ee14c59315838c128341",
+        "dedupe_key": "6a86b60ec59315838c128071:6a86ee14c59315838c128341:afterEdit:b835a282",
+        "source_scene": "agent",
+        "external_session_id": "6a86b60ec59315838c128071",
+        "operation_id": "6a86ee14c59315838c128341"
+      }
+    }
+  }
+}
