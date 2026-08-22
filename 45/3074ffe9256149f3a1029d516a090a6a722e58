@@ -1,0 +1,19 @@
+.github/workflows/nightly-test-npu.yml
+  s_efccde0f33472d::t_b7308036b48462 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "453074ffe9256149f3a1029d516a090a6a722e58",
+  "prompts": {},
+  "sessions": {
+    "s_efccde0f33472d": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a891695c59315838c1287bd",
+        "model": "glm-5.2__dev"
+      },
+      "human_author": "hhhh1252023 <3112883793@qq.com>"
+    }
+  }
+}
