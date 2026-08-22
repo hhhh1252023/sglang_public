@@ -1,0 +1,181 @@
+test/registered/npu/llm_models/test_ascend_dbrx_instruct.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 1-26
+test/registered/npu/performance/qwen3_6_27b/test_npu_qwen3_6_27b_1p_in1080p_30_out256_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13,27,72-73
+python/sglang/test/ascend/e2e/test_npu_performance_utils.py
+  s_5cb157f5d0f52b::t_0ab629dc4eaca3 933-938,941-953,999,1009-1014,1030-1031
+test/registered/npu/interface/test_npu_openai_server_ignore_eos.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 7,16,28,34
+test/registered/npu/accuracy/qwen3_omni_30b_a3b_thinking/test_npu_qwen3_omni_30b_a3b_thinking_1p_mmmu.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/performance/qwen3_6_27b/test_npu_qwen3_6_27b_2p_in64k_out1k_prefix90_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/performance/qwen3_6_35b_a3b/test_npu_qwen3_6_35b_a3b_1p_in128k_out1k_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13,84
+test/registered/npu/performance/qwen3_32b/test_npu_qwen3_32b_bf16_8p_in18k_out4k_6ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 14
+test/registered/npu/performance/qwen3_6_35b_a3b/test_npu_qwen3_6_35b_a3b_1p_in128k_out1k_prefix90_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/performance/qwen3_6_35b_a3b/test_npu_qwen3_6_35b_a3b_1p_in64k_out1k_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 11,82
+test/registered/npu/performance/minimax_m2_5/test_npu_minimax_m2_5_w8a8_8p_in3k5_out1k5_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 15
+test/registered/npu/performance/qwen3_30b_a3b/test_npu_qwen3_30b_w8a8_1p_in3k5_out1k5_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13,25
+test/registered/npu/llm_models/test_npu_llama_2_7b.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12,19
+test/registered/npu/accuracy/glm4_7_flash/test_npu_glm4_7_flash_1p_gsm8k.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 10
+test/registered/npu/accuracy/glm4_6v_flash/test_npu_glm4_6v_flash_1p_mmmu.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 10
+test/registered/npu/accuracy/qwen3_6_27b/test_npu_qwen3_6_27b_1p_gpqa.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12-17
+test/registered/npu/accuracy/qwen3_vl_30b_a3b/test_npu_qwen3_vl_30b_a3b_bf16_2p_gsm8k.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/accuracy/qwen3_6_35b_a3b/test_npu_qwen3_6_35b_a3b_1p_aime26.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 11
+test/registered/npu/performance/deepseek_v4_flash/test_npu_deepseek_v4_flash_w8a8_8p_in8k_out1k_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 11-12,19,22,24,26-28,40,59-62,64,78,108,115
+test/registered/npu/performance/qwen3_32b/test_npu_qwen3_32b_w8a8_2p_in3k5_out1k5_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13,24
+test/registered/npu/llm_models/test_npu_qwen3_30b_attn_cp.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 45
+test/registered/npu/performance/qwen3_6_27b/test_npu_qwen3_6_27b_w8a8_2p_in16k_out1k_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13
+.github/workflows/full-test-npu.yml
+  s_5cb157f5d0f52b::t_0ab629dc4eaca3 25,30,62,74,76,79,86-88,96,109,116,118,120-122,124,135-136,138,146,149-151,159,167,172,176-177,179,181,183-185,187,198-199,209,212-214,222,230,235,239-240,242,244,247,250,261-262,272,275-277,285,293,298,302-303,305,307,309-311,313,324-325,335,338,346-347,349,351-353,355-359
+test/registered/npu/performance/glm5_1/test_npu_glm5_1_w4a8_1p1d_32p_in64k_out1k_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 73,154-161,182-183
+test/registered/npu/accuracy/qwen3_6_35b_a3b/test_npu_qwen3_6_35b_a3b_1p_in64k_out1k_prefix90_50ms_aime26.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12-13
+test/registered/npu/accuracy/qwen3_32b/test_npu_qwen3_32b_w8a8_2p_in3k5_out1k5_50ms_gpqa_a2.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13-14
+test/registered/npu/llm_models/test_ascend_trinity_mini.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 1-47
+test/registered/npu/basic_function/parameter/test_npu_log_level.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 1-92
+test/registered/npu/accuracy/qwen3_5_9b/test_npu_qwen3_5_9b_bf16_1p_gsm8k.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/llm_models/test_npu_deepseek_v3_2_exp_w8a8.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 1-37
+test/registered/npu/accuracy/glm4_7_flash/test_npu_glm4_7_flash_1p_aime25.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 10-11
+test/registered/npu/accuracy/qwen3_32b/test_npu_qwen3_32b_w8a8_2p_in3k5_out1k5_50ms_gpqa.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13-14
+test/registered/npu/performance/qwen3-8b/test_npu_qwen3_8b_w8a8_1p_in6k_out1k5_bs16.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+.github/workflows/_npu-pr-test-stage.yml
+  s_5cb157f5d0f52b::t_0ab629dc4eaca3 43-46,184-185,213,215-239,241-247,252
+test/registered/npu/accuracy/minimax_m2_5/test_npu_minimax_m2_5_w8a8_4p_in64k_out1k_prefix90_50ms_gpqa.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 14-15
+test/registered/npu/accuracy/qwen3_6_27b/test_npu_qwen3_6_27b_w8a8_1p_in3k5_out1k5_50ms_gpqa.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12-13
+test/registered/npu/accuracy/qwen3_30b_a3b/test_npu_qwen3_30b_w8a8_1p_in3k5_out1k5_50ms_aime25.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13-14
+test/registered/npu/performance/qwen3-8b/test_npu_qwen3_8b_w8a8_1p_in3k5_out1k5_50ms.py
+  s_5cb157f5d0f52b::t_3839def0be2c1d 13,24
+test/registered/npu/accuracy/qwen3_next_80b_a3b_instruct/test_npu_qwen3_next_80b_w8a8_2p_in6k_out1k5_bs16_aime25.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13-14
+test/registered/npu/llm_models/test_npu_mistral_7b.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12,19
+test/run_suite.py
+  s_5cb157f5d0f52b::t_0ab629dc4eaca3 155,161-168,331-333
+test/registered/npu/accuracy/qwen3_vl_8b/test_npu_qwen3_vl_8b_bf16_2p_gsm8k.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+.github/workflows/nightly-test-npu.yml
+  s_5cb157f5d0f52b::t_0ab629dc4eaca3 76,81-84,111-126,128-129,131-135,137-139,141-142,145,147-148,150-330,335,354,373-374,384,389,403,406-407,415-416,420-432,446,450-469,484-501,510-514,543-545
+.github/workflows/_npu-single-node-test-stage.yml
+  s_5cb157f5d0f52b::t_0ab629dc4eaca3 40-44,49-56,72-75,217-219,229-265,269-287,294,299-300,306-312,331-333,338,340-348,354-388,400
+test/registered/npu/accuracy/qwen3_vl_8b_thinking/test_npu_qwen3_vl_8b_thinking_1p_mmmu.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13,23
+test/registered/npu/accuracy/qwen3-8b/test_npu_qwen3_8b_w8a8_1p_in3k5_out1k5_50ms_gpqa.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13-14
+test/registered/npu/performance/minimax_m2_5/test_npu_minimax_m2_5_w8a8_4p_in64k_out1k_prefix90_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13,29,45-46
+test/registered/npu/performance/qwen3_235b_a22b/test_npu_qwen3_235b_w8a8_8p_in3k5_out1k5_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13,25-26
+test/registered/npu/performance/qwen3_6_27b/test_npu_qwen3_6_27b_w8a8_1p_in64k_out1k_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/accuracy/glm5_1/test_npu_glm5_1_w4a8_1p1d_32p_in64k_out1k_50ms_aime26.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13
+test/registered/npu/accuracy/kimi_k2_6/test_npu_kimi_k2_6_w4a8_16p_in64k_out1k_100ms_aime25.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 15
+test/registered/npu/accuracy/minimax_m2_5/test_npu_minimax_m2_5_w8a8_8p_in3k5_out1k5_50ms_gpqa.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 14-15
+test/registered/npu/accuracy/moonshotai_moonlight_16b_a3b/test_npu_moonlight_16b_a3b_bf16_1p_gsm8k.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/basic_function/HiCache/test_npu_hierarchical_cache_ttft_mha.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 84
+test/registered/npu/performance/kimi_k2_6/test_npu_kimi_k2_6_w4a8_8p_in3k5_out1k5_20ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13-14,31
+test/registered/npu/performance/qwen3_5_397b/test_npu_qwen3_5_397b_w4a8_8p_in3k5_out1k5_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/performance/qwen3_6_27b/test_npu_qwen3_6_27b_w8a8_2p_in128k_out1k_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13
+test/registered/npu/llm_models/test_npu_qwen3_235b_a22b_w8a8.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12,19
+test/registered/npu/accuracy/glm5_top64_pruned/test_npu_glm5_top64_pruned_bf16_8p_gsm8k.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/performance/kimi_k2_6/test_npu_kimi_k2_6_w4a8_16p_in64k_out1k_100ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 15
+test/registered/npu/performance/qwen3_6_35b_a3b/test_npu_qwen3_6_35b_a3b_1p_in64k_out1k_prefix90_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12
+test/registered/npu/accuracy/qwen3_32b/test_npu_qwen3_32b_bf16_8p_gpqa.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13-14
+test/registered/npu/llm_models/test_ascend_minimax_m2.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 1-44
+test/registered/npu/accuracy/qwen3-8b/test_npu_qwen3_8b_w8a8_1p_in6k_out1k5_bs16_gpqa.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13-14
+test/registered/npu/performance/qwen3_32b/test_npu_qwen3_32b_w8a8_2p_in3k5_out1k5_50ms_a2.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 14
+test/registered/npu/performance/qwen3_6_27b/test_npu_qwen3_6_27b_1p_in1024x1024_30_out1024_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12,27
+test/registered/npu/performance/qwen3_6_35b_a3b/test_npu_qwen3_6_35b_a3b_1p_in3k5_out1k5_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 11,85
+test/registered/npu/basic_function/dllm/test_npu_llada2_mini.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 14
+test/registered/npu/performance/qwen3_next_80b_a3b_instruct/test_npu_qwen3_next_80b_w8a8_2p_in6k_out1k5_bs16.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 11
+test/registered/npu/accuracy/deepseek_v3_2/test_npu_deepseek_v3_2_8p_aime25.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 10-11
+test/registered/npu/vlm_models/test_ascend_glm_4_5v.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 1-33
+test/registered/npu/performance/qwen3_6_27b/test_npu_qwen3_6_27b_w8a8_1p_in3k5_out1k5_50ms.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 13
+python/sglang/test/ascend/e2e/test_npu_accuracy_utils.py
+  s_5cb157f5d0f52b::t_0ab629dc4eaca3 314-319,322-334,390-395,411-412
+test/registered/npu/accuracy/qwen3_vl_30b_a3b_thinking/test_npu_qwen3_vl_30b_a3b_thinking_1p_mmmu.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 12-13,23
+test/registered/npu/interface/test_npu_matched_stop.py
+  s_5cb157f5d0f52b::t_645ab960b8e9f8 1,4-5,15-22,25-27,37-45,47,54-160
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "c04c7d4e3f34c610da0aeac3163854906f85f118",
+  "prompts": {},
+  "humans": {
+    "h_43a4d5a5d81cee": {
+      "author": "hhhh1252023 <3112883793@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_5cb157f5d0f52b": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a897231c59315838c128a85",
+        "model": "glm-5.2__dev"
+      },
+      "human_author": "hhhh1252023 <3112883793@qq.com>",
+      "custom_attributes": {
+        "edit_kind": "bash",
+        "operation_id": "6a8977f6c59315838c128c02",
+        "session_id": "6a897231c59315838c128a85",
+        "external_session_id": "6a897231c59315838c128a85",
+        "tool_name": "RunCommand",
+        "display_model_name": "GLM-5.2",
+        "tool_use_id": "6a8977f6c59315838c128c02"
+      }
+    }
+  }
+}
