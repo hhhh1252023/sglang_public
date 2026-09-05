@@ -1,0 +1,39 @@
+python/sglang/test/ascend/e2e/run_npu_e2e_test.py
+  s_3fefaa99e2939e::t_5c7c388007618d 495-501
+.github/workflows/_npu-single-node-test-stage.yml
+  s_3fefaa99e2939e::t_fe2868955b3ef6 409-426
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "f8a19df9dab52ed0ad046e1ab4301c38e5409662",
+  "prompts": {},
+  "humans": {
+    "h_43a4d5a5d81cee": {
+      "author": "hhhh1252023 <3112883793@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_3fefaa99e2939e": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a9bc7ea0f8b00db69265da8",
+        "model": "glm-5.3__dev"
+      },
+      "human_author": "hhhh1252023 <3112883793@qq.com>",
+      "custom_attributes": {
+        "runtime_client": "trae-tob-git-ai",
+        "tool_id": "Edit",
+        "tool_type": "agent",
+        "source_scene": "unknown",
+        "tool_use_id": "6a9bc8f00f8b00db69265e10",
+        "session_id": "6a9bc7ea0f8b00db69265da8",
+        "external_session_id": "6a9bc7ea0f8b00db69265da8",
+        "operation_id": "6a9bc8f00f8b00db69265e10",
+        "dedupe_key": "6a9bc7ea0f8b00db69265da8:6a9bc8f00f8b00db69265e10:afterEdit:d25535bd",
+        "client_type": "ide",
+        "edit_kind": "file_edit"
+      }
+    }
+  }
+}
