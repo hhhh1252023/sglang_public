@@ -1,0 +1,37 @@
+.github/workflows/nightly-test-npu-e2e-multi-node.yml
+  s_cea59cbd531938::t_9e2f49acf2ddea 273,280
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "39ae281aff70d48e888fc9e8fbeed9fab24e7aac",
+  "prompts": {},
+  "humans": {
+    "h_43a4d5a5d81cee": {
+      "author": "hhhh1252023 <3112883793@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_cea59cbd531938": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a82be4f25a8e5b6ae2503c8",
+        "model": "glm-5.2"
+      },
+      "human_author": "hhhh1252023 <3112883793@qq.com>",
+      "custom_attributes": {
+        "external_session_id": "6a82be4f25a8e5b6ae2503c8",
+        "session_id": "6a82be4f25a8e5b6ae2503c8",
+        "operation_id": "6a86a30cc59315838c127f9f",
+        "edit_kind": "file_edit",
+        "tool_use_id": "6a86a30cc59315838c127f9f",
+        "runtime_client": "trae-tob-git-ai",
+        "client_type": "ide",
+        "dedupe_key": "6a82be4f25a8e5b6ae2503c8:6a86a30cc59315838c127f9f:afterEdit:75a3ffba",
+        "tool_type": "builtin",
+        "source_scene": "agent",
+        "tool_id": "icube:applyChatSnapshotPatch"
+      }
+    }
+  }
+}

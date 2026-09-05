@@ -1,0 +1,37 @@
+.github/workflows/pr-test-npu.yml
+  s_eefeef88dea8e3::t_66b3534c4c0daa 323,336
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "d2c36f3463a93ecb4bf5ca172f425aa1e87cdafc",
+  "prompts": {},
+  "humans": {
+    "h_43a4d5a5d81cee": {
+      "author": "hhhh1252023 <3112883793@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_eefeef88dea8e3": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a9ab2820f8b00db692659c5",
+        "model": "glm-5.3__dev"
+      },
+      "human_author": "hhhh1252023 <3112883793@qq.com>",
+      "custom_attributes": {
+        "operation_id": "6a9ab6c10f8b00db69265adf",
+        "session_id": "6a9ab2820f8b00db692659c5",
+        "client_type": "ide",
+        "dedupe_key": "6a9ab2820f8b00db692659c5:6a9ab6c10f8b00db69265adf:afterEdit:2438c5a4",
+        "source_scene": "unknown",
+        "runtime_client": "trae-tob-git-ai",
+        "tool_id": "Edit",
+        "external_session_id": "6a9ab2820f8b00db692659c5",
+        "tool_use_id": "6a9ab6c10f8b00db69265adf",
+        "tool_type": "agent",
+        "edit_kind": "file_edit"
+      }
+    }
+  }
+}
