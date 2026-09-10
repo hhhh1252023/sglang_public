@@ -1435,6 +1435,23 @@ def mamba_cache_chunk_size() -> int:
     return get_server_args().mamba_cache_chunk_size
 
 
+def mamba_state_chunk_size(hf_config) -> int:
+    """Granularity of the intermediate SSM state (`h`) grid produced by the
+    kernel that runs extend: the model's ``mamba_chunk_size`` (default 64) for
+    the standard FLA/KDA/Mamba kernels, and 128 when the NPU mega GDN kernel
+    (``GDN_USE_MEGA_GDN=1``) is active. ``_init_track_ssm_indices`` and the
+    radix-cache track math index `h` at this granularity, so it must match the
+    kernel's `h` row spacing."""
+    if os.environ.get("GDN_USE_MEGA_GDN", "0") == "1":
+        from sglang.srt.utils.common import is_npu
+
+        if is_npu():
+            from sgl_kernel_npu.fla.mega_chunk_gdn import CHUNK_SIZE
+
+            return CHUNK_SIZE
+    return getattr(hf_config, "mamba_chunk_size", 64)
+
+
 def max_speculative_num_draft_tokens() -> int | None:
     """The largest draft-token count speculative decoding may use.
 

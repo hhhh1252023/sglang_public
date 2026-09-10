@@ -42,6 +42,9 @@ logger = logging.getLogger(__name__)
 class MambaAttnBackendBase(AttentionBackend):
     def __init__(self, model_runner: ModelRunner):
         super().__init__()
+        # model_config must not be touched here: backend selection reads the
+        # chunks before a real model_config exists on every runner.
+        self._model_runner = model_runner
         self.pad_slot_id = PAD_SLOT_ID
         self.device = model_runner.device
         self.topk = model_runner.server_args.speculative_eagle_topk or 0
@@ -75,6 +78,17 @@ class MambaAttnBackendBase(AttentionBackend):
         self.cached_cuda_graph_decode_query_start_loc: torch.Tensor = None
         self.cached_cuda_graph_verify_query_start_loc: torch.Tensor = None
         self.conv_states_shape: tuple[int, int] = None
+
+    @property
+    def state_chunk_size(self) -> int:
+        """Granularity of the intermediate SSM state (`h`) grid produced by the
+        kernel that runs extend (see ``mamba_state_chunk_size``): the model's
+        mamba_chunk_size (64), or 128 under the NPU mega GDN kernel.
+        ``_init_track_ssm_indices`` indexes `h` at this granularity, so it must
+        match the kernel's `h` row spacing."""
+        from sglang.srt.runtime_context import mamba_state_chunk_size
+
+        return mamba_state_chunk_size(self._model_runner.model_config.hf_text_config)
 
     def _translate_mamba_indices(self, mamba_indices: torch.Tensor) -> torch.Tensor:
         """Virtual->physical mamba slot-id translate (identity for the non-unified
@@ -320,7 +334,7 @@ class MambaAttnBackendBase(AttentionBackend):
         """src/dst indices to track SSM states for prefix caching: aligned seqs
         cache last_recurrent_state, unaligned cache intermediate `h` at the last
         chunk boundary."""
-        chunk_size = mamba_cache_chunk_size()
+        chunk_size = self.state_chunk_size
         # CPU to avoid kernel launches for the masking ops
         mamba_track_mask = forward_batch.mamba_track_mask.cpu()
         extend_seq_lens = forward_batch.extend_seq_lens.cpu()
